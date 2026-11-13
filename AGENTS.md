@@ -1,0 +1,3 @@
+# Rules for this folder
+- Excel and Slides run in this always-on engine on Render (`junedesk-office-engine`), deployed from the separate GitHub repo `nevaubi/junedesk-office-engine` (copy of this folder); push changes there after editing. Why: workbooks/decks need stateful worker sessions the edge runtime cannot hold, and Render cannot read the Lovable repo.
+- The engine holds no database or storage keys and never calls a model: it trusts only short-lived RS256 tokens verified against JuneDesk's `/api/public/office/jwks`, loads files from signed links, and saves through `/api/public/office/engine/docs/:id/content`. Why: no credentials leave Lovable.

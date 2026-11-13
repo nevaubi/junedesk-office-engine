@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM"],
+    "types": ["node"],
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "paths": {
+      "electron": ["./server/host/electron.ts"],
+      "@genoffice/agent-core": ["./vendor/packages/agent-core/src/index.ts"],
+      "@genoffice/ai-provider": ["./vendor/packages/ai-provider/src/index.ts"],
+      "@genoffice/ai-search": ["./server/stubs/ai-search.ts"],
+      "@genoffice/electron-utils": ["./vendor/packages/electron-utils/src/index.ts"],
+      "@genoffice/file-parse": ["./vendor/packages/file-parse/src/index.ts"],
+      "@genoffice/i18n": ["./vendor/packages/i18n/src/index.ts"],
+      "@genoffice/project-store": ["./vendor/packages/project-store/src/index.ts"],
+      "@genoffice/docx-engine": ["./vendor/packages/docx-engine/src/index.ts"],
+      "@genoffice/docx-engine/math": ["./vendor/packages/docx-engine/src/math.ts"],
+      "@genoffice/docx-engine/metafile": ["./vendor/packages/docx-engine/src/metafile.ts"],
+      "@genoffice/pptx-engine/custgeom": ["./vendor/packages/pptx-engine/src/custgeom.ts"]
+    }
+  },
+  "include": ["server/**/*.ts", "vendor/**/*.ts"],
+  "exclude": ["server/registry.ts", "node_modules", ".build"]
+}

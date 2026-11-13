@@ -1,0 +1,5 @@
+node_modules/
+.build/
+.local/
+native/xlsx-engine/target/
+*.log

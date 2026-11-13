@@ -1,0 +1,39 @@
+{
+  "name": "@seegerweiss/office-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Office document engine service: hosts the retained Sheets engine (Node worker per open workbook + Rust xlsx-sidecar) behind platform-issued JWTs. Documents are loaded from presigned S3 grants and saved back through the platform API.",
+  "license": "Apache-2.0",
+  "engines": { "node": ">=22.16.0" },
+  "scripts": {
+    "build": "node build.mjs",
+    "build:native": "cargo build --release --locked --manifest-path native/xlsx-engine/Cargo.toml",
+    "start": "node server/start.mjs",
+    "test": "node --test server/*.test.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@univerjs/core": "0.25.1",
+    "bidi-js": "1.0.3",
+    "cfb": "1.2.2",
+    "fast-xml-parser": "5.10.1",
+    "harfbuzzjs": "1.5.0",
+    "jose": "6.2.12",
+    "jszip": "3.10.1",
+    "opentype.js": "2.0.0",
+    "parse5": "8.0.1",
+    "pdfjs-dist": "6.2.108",
+    "pngjs": "7.0.0",
+    "ppt-to-text": "1.0.1",
+    "undici": "6.28.0",
+    "utif2": "4.1.0",
+    "word-extractor": "1.0.4",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "22.16.5",
+    "esbuild": "0.25.12",
+    "typescript": "5.9.3"
+  }
+}

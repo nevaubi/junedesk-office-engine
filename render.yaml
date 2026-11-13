@@ -1,0 +1,23 @@
+# Render Blueprint: the always-on Excel/Slides engine. Deploy with "New > Blueprint" from the junedesk-office-engine repo.
+services:
+  - type: web
+    name: junedesk-office-engine
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: standard          # 2 GB RAM: one worker thread per open workbook/deck
+    region: singapore       # closest Render region to India
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: OFFICE_PLATFORM_URL
+        value: https://case-cosmos-research-desk.lovable.app
+      - key: OFFICE_ENGINE_ALLOWED_ORIGINS
+        value: https://case-cosmos-research-desk.lovable.app,https://id-preview--7d113f0b-4ed5-4f8b-92b4-acec5d4db6ff.lovable.app
+      - key: OFFICE_ENGINE_JWT_AUDIENCE
+        value: junedesk-office-engine
+      - key: OFFICE_ENGINE_TENANT
+        value: junedesk
+      - key: OFFICE_ENGINE_MAX_SESSIONS
+        value: "24"
+      - key: OFFICE_ENGINE_MAX_PER_USER
+        value: "4"
