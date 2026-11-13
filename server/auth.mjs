@@ -55,7 +55,7 @@ export class TokenAuth {
       ({ payload } = await jwtVerify(token, this.keys, {
         issuer: this.config.issuer,
         audience: this.config.audience,
-        algorithms: ["RS256"],
+        algorithms: ["RS256", "EdDSA"],
         clockTolerance: 5,
       }));
     } catch (error) {
@@ -70,7 +70,7 @@ export class TokenAuth {
       reject(403, "The workspace token does not authorize this engine.");
     }
     if (payload.tenant !== this.config.tenant) reject(403, "The workspace tenant is not authorized.");
-    if (typeof payload.doc !== "string" || !/^[0-9A-HJKMNP-TV-Z]{26}$/.test(payload.doc)) {
+    if (typeof payload.doc !== "string" || !/^(?:[0-9A-HJKMNP-TV-Z]{26}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/.test(payload.doc)) {
       reject(403, "The workspace token is not scoped to a document.");
     }
     return {
